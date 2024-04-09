@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Ноты
+{% endblock %}
+
+{% block body %}
+<div class="container">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+    <h1>Звуки первой октавы фортепиано</h1>
+    <button id="key_w" onclick="playTone(1)">До#</button>
+    <button id="key_e" onclick="playTone(3)">Ре#</button>
+    <button id="key_t" onclick="playTone(6)">Фа#</button>
+    <button id="key_y" onclick="playTone(8)">Соль#</button>
+    <button id="key_u" onclick="playTone(10)">Ля#</button>
+    <div></div>
+    <button id="key_a" onclick="playTone(0)">До</button>
+    <button id="key_s" onclick="playTone(2)">Ре</button>
+    <button id="key_d" onclick="playTone(4)">Ми</button>
+    <button id="key_f" onclick="playTone(5)">Фа</button>
+    <button id="key_g" onclick="playTone(7)">Соль</button>
+    <button id="key_h" onclick="playTone(9)">Ля</button>
+    <button id="key_j" onclick="playTone(11)">Си</button>
+
+    <script>
+        function playTone(index) {
+            $.get("/play_tone/" + index);
+        }
+
+        $(document).keydown(function(e) {
+            if (e.key === "q") {
+                return;
+            }
+            if (e.key in ["a", "s", "d", "f", "g", "h", "j"]) {
+                $.get("/key_pressed/" + e.key);
+            }
+        });
+
+        $(document).keyup(function(e) {
+            if (e.key === "q") {
+                return;
+            }
+            if (e.key in ["a", "s", "d", "f", "g", "h", "j"]) {
+                $.get("/key_released/" + e.key);
+            }
+        });
+    </script>
+</div>
+{% endblock %}

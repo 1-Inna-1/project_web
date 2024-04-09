@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Страница про нас
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Добавление статьи<h1>
+        <form method="post">
+                <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+            <input type="text" name="title" id="title" class="form-control" placeholder="Введите название"><br>
+            <textarea name="intro" id="intro" class="form-control" placeholder="Введите тезисы"></textarea><br>
+            <textarea name="text" id="text" class="form-control" placeholder="Введите основной текст"></textarea><br>
+            <form method="post" enctype="multipart/form-data">
+                               <div class="form-group">
+                                    <input type="file" class="form-control-file" id="photo" name="file">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Отправить</button>
+                            </form>
+        </form>
+</div>
+{% endblock %}
