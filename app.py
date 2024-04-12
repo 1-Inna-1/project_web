@@ -6,7 +6,7 @@ from flask_login import LoginManager, login_user
 #from data.login import RegisterForm
 import numpy as np
 import pyaudio as pa
-from data.registr import User
+from data.user import User
 from data.login import LoginForm
 
 
@@ -93,15 +93,15 @@ def load_user(user_id):
     return db_sess.query(Article).get(user_id)
 
 
-'''@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    form = RegisterForm()
+    form = LoginForm()
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
-            return render_template('register.html', title='Регистрация',
+            return render_template('login.html', title='Регистрация',
                                    form=form,
                                    message="Пароли не совпадают")
-    return render_template('login.html', title='Авторизация', form=form)'''
+    return render_template('login.html', title='Авторизация', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -109,14 +109,11 @@ def login():
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.email == form.email.data).first()
-        if form.password.data == 123:
-            if user and user.check_password(form.password.data):
+        if form.password.data == '123' and form.email.data == 'qwert@yandex.ru':
                 login_user(user, remember=form.remember_me.data)
                 return redirect("/")
-            return render_template('login.html',
-                                   message="Неправильный логин или пароль",
-                                   form=form)
-        return render_template('login.html', title='Авторизация', form=form)
+
+
 @app.route('/instruments')
 def index():
     return render_template('index.html')
@@ -465,6 +462,23 @@ def post_detail(id):
     article = db_sess.query(Article).get(id)
     return render_template('post_detail.html', article=article)
 
+@app.route('/create-article', methods=['POST', 'GET'])
+def create_article():
+    if request.method == 'POST':
+        title = request.form['title']
+        intro = request.form['intro']
+        text = request.form['text']
+        #image_file = request.form['image_file']
+        article = Article(title=title, intro=intro, text=text)
+        try:
+            db_sess = db_session.create_session()
+            db_sess.add(article)
+            db_sess.commit()
+            return redirect('/posts')
+        except:
+            return "При добавлении статьи произошла ошибка"
+    else:
+        return render_template('create-article.html')
 
 @app.route('/posts/<int:id>/del')
 def post_delete(id):
@@ -493,25 +507,6 @@ def post_update(id):
             return "При редактировании статьи произошла ошибка"
     else:
         return render_template('post_update.html', article=article)
-
-
-@app.route('/create-article', methods=['POST', 'GET'])
-def create_article():
-    if request.method == 'POST':
-        title = request.form['title']
-        intro = request.form['intro']
-        text = request.form['text']
-        #image_file = request.form['image_file']
-        article = Article(title=title, intro=intro, text=text)
-        try:
-            db_sess = db_session.create_session()
-            db_sess.add(article)
-            db_sess.commit()
-            return redirect('/posts')
-        except:
-            return "При добавлении статьи произошла ошибка"
-    else:
-        return render_template('create-article.html')
 
 
 def main():

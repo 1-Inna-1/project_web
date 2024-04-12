@@ -1,7 +1,6 @@
 from flask_login import UserMixin
 from .db_session import SqlAlchemyBase
-class User(SqlAlchemyBase, UserMixin):
-    __tablename__ = 'users'
+class Users(SqlAlchemyBase, UserMixin):
     def is_authenticated(self):
         return True
 
