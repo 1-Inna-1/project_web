@@ -1,6 +1,7 @@
-from flask_login import UserMixin
+'''from flask_login import UserMixin
 from .db_session import SqlAlchemyBase
 class Users(SqlAlchemyBase, UserMixin):
+    __tablename__ = 'user'
     def is_authenticated(self):
         return True
 
@@ -11,4 +12,4 @@ class Users(SqlAlchemyBase, UserMixin):
         return False
 
     def get_id(self):
-        return str(self.__user['id'])
+        return str(self.__user['id'])'''

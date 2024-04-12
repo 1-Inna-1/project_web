@@ -15,12 +15,7 @@ sample_rate = 44100
 # 16-ти битный звук (2 ** 16 -- максимальное значение для int16)
 s_16bit = 2 ** 16
 freq_array = np.array([261.63, 277.18, 293.66, 311.13, 329.63, 349.23, 369.99, 392.00, 415.30, 440.00, 466.16, 493.88])
-# наши клавиши
-key_names = ['a', 'w', 's', 'e', 'd', 'r', 'f', 't', 'g', 'y', 'h', 'u', 'j']
-# коды клавиш
-key_list = list(map(lambda x: ord(x), key_names))
-# состояние клавиш (нажато/не нажато)
-key_dict = dict([(key, False) for key in key_list])
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -72,21 +67,6 @@ def play_tone(index):
     p.terminate()
     return ''
 
-
-@app.route('/key_pressed/<string:key>')
-def key_pressed(key):
-    key_code = ord(key)
-    key_dict[key_code] = True
-    return ''
-
-
-@app.route('/key_released/<string:key>')
-def key_released(key):
-    key_code = ord(key)
-    key_dict[key_code] = False
-    return ''
-
-
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
@@ -103,7 +83,7 @@ def login():
                                    message="Пароли не совпадают")
     return render_template('login.html', title='Авторизация', form=form)
 
-@app.route('/login', methods=['GET', 'POST'])
+'''@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -112,6 +92,7 @@ def login():
         if form.password.data == '123' and form.email.data == 'qwert@yandex.ru':
                 login_user(user, remember=form.remember_me.data)
                 return redirect("/")
+    return render_template('login.html', title='Авторизация', form=form)'''
 
 
 @app.route('/instruments')
@@ -186,12 +167,12 @@ def plates():
 
 @app.route('/maraca')
 def maraca():
-    return render_template('instruments/xylophone.html')
+    return render_template('instruments/maraca.html')
 
 
 @app.route('/timpani')
 def timpani():
-    return render_template('instruments/xylophone.html')
+    return render_template('instruments/timpani.html')
 
 
 @app.route('/grand_piano')

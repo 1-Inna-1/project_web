@@ -1,1 +1,7 @@
 flask
+pyaudio
+flask_login
+numpy
+flask_wtf
+sqlalchemy
+datetime
