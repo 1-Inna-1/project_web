@@ -13,7 +13,6 @@ class Article(SqlAlchemyBase, SerializerMixin):
     intro = sqlalchemy.Column(sqlalchemy.String(300), nullable=False)
     text = sqlalchemy.Column(sqlalchemy.Text, nullable=False)
     date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
-    #image_file = sqlalchemy.Column(sqlalchemy.String(20), nullable=False)
 
 
     def __repr__(self):
