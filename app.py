@@ -1,6 +1,6 @@
 from flask import Flask
 from data import db_session
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, url_for
 from data.users import Article
 from flask_login import LoginManager, login_user
 #from data.login import RegisterForm
@@ -72,28 +72,33 @@ def load_user(user_id):
     db_sess = db_session.create_session()
     return db_sess.query(Article).get(user_id)
 
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        if form.password.data != form.password_again.data:
-            return render_template('login.html', title='Регистрация',
-                                   form=form,
-                                   message="Пароли не совпадают")
+        if form.password.data == '73946323804236637' and form.email.data == 'fhien45dgioaskpgh@yandex.ru':
+            return redirect("/create-article")
     return render_template('login.html', title='Авторизация', form=form)
 
-'''@app.route('/login', methods=['GET', 'POST'])
-def login():
+@app.route('/password/<int:id>', methods=['GET', 'POST'])
+def password(id):
     form = LoginForm()
+    db_sess = db_session.create_session()
+    article = db_sess.query(Article).get(id)
     if form.validate_on_submit():
-        db_sess = db_session.create_session()
-        user = db_sess.query(User).filter(User.email == form.email.data).first()
-        if form.password.data == '123' and form.email.data == 'qwert@yandex.ru':
-                login_user(user, remember=form.remember_me.data)
-                return redirect("/")
-    return render_template('login.html', title='Авторизация', form=form)'''
+        if form.password.data == '73946323804236637' and form.email.data == 'fhien45dgioaskpgh@yandex.ru':
+            return render_template('delite.html', article=article)
+    return render_template('login.html', title='Авторизация', form=form)
 
+@app.route('/password_up/<int:id>', methods=['GET', 'POST'])
+def password_up(id):
+    form = LoginForm()
+    db_sess = db_session.create_session()
+    article = db_sess.query(Article).get(id)
+    if form.validate_on_submit():
+        if form.password.data == '73946323804236637' and form.email.data == 'fhien45dgioaskpgh@yandex.ru':
+            return render_template('delite.html', article=article)
+    return render_template('login.html', title='Авторизация', form=form)
 
 @app.route('/instruments')
 def index():
@@ -492,7 +497,7 @@ def post_update(id):
 
 def main():
     db_session.global_init("db/blogs.db")
-    app.run()
+    app.run(debug=True)
 
 if __name__ == '__main__':
     main()

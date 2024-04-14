@@ -31,12 +31,9 @@
       {% if current_user.is_authenticated %}
     <a class="navbar-brand" href="/create-article">{{ current_user.name }}</a>
 {% else %}
-    <p>
-        <a class="btn btn-success" href="/login">Войти</a>
-    </p>
+
 {% endif %}
       </nav>
-        <a class="btn btn-warning" href="/create-article">Создать</a>
      </div>
     {% block body %}{% endblock %}
 
