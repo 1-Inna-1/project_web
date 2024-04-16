@@ -6,6 +6,7 @@ from flask_login import LoginManager
 import numpy as np
 import pyaudio as pa
 from data.login import LoginForm
+import folium
 
 # частота дискретизации
 sample_rate = 44100
@@ -19,6 +20,24 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+
+@app.route('/map')
+def map():
+    m = folium.Map(location=[20, 0], zoom_start=2)
+
+    cities = {
+        "Балтимор (США)": (39.2904, -76.6122, "Филип Гласс"),
+        "Наро-Фоминск (Московская область)": (55.3877, 36.7226, "Кирилл Рихтер"),
+        "Франкфурт-на-Майне (Германия)": (50.1109, 8.6821, "Ханс Циммер"),
+        "Нью-Йорк (США)": (40.7128, -74.0060, "Джон Уильямс"),
+        "Милан": (45.4642, 9.1900, "Роберто Каччапалья")
+    }
+
+    for city, (lat, lon, composer) in cities.items():
+        folium.Marker(location=[lat, lon], popup=f"{city}\nЖил: {composer}").add_to(m)
+
+    m.save('templates/map.html')
+    return render_template('map.html')
 
 def generate_sample(freq, duration, volume):
     # амплитуда
