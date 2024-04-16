@@ -1,14 +1,11 @@
 from flask import Flask
 from data import db_session
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect
 from data.users import Article
-from flask_login import LoginManager, login_user
-#from data.login import RegisterForm
+from flask_login import LoginManager
 import numpy as np
 import pyaudio as pa
-from data.user import User
 from data.login import LoginForm
-
 
 # частота дискретизации
 sample_rate = 44100
@@ -22,10 +19,6 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-@login_manager.user_loader
-def load_user(user_id):
-    db_sess = db_session.create_session()
-    return db_sess.query(User).get(user_id)
 
 def generate_sample(freq, duration, volume):
     # амплитуда
@@ -43,7 +36,6 @@ def generate_sample(freq, duration, volume):
 def generate_tones(duration):
     tones = []
     for freq in freq_array:
-        # np.array нужен для преобразования данных под формат 16 бит (dtype=np.int16)
         tone = np.array(generate_sample(freq, duration, 1.0), dtype=np.int16)
         tones.append(tone)
     return tones
@@ -67,10 +59,12 @@ def play_tone(index):
     p.terminate()
     return ''
 
+
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
     return db_sess.query(Article).get(user_id)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -79,6 +73,7 @@ def login():
         if form.password.data == '73946323804236637' and form.email.data == 'fhien45dgioaskpgh@yandex.ru':
             return redirect("/create-article")
     return render_template('login.html', title='Авторизация', form=form)
+
 
 @app.route('/password/<int:id>', methods=['GET', 'POST'])
 def password(id):
@@ -90,6 +85,7 @@ def password(id):
             return render_template('delite.html', article=article)
     return render_template('login.html', title='Авторизация', form=form)
 
+
 @app.route('/password_up/<int:id>', methods=['GET', 'POST'])
 def password_up(id):
     form = LoginForm()
@@ -99,6 +95,7 @@ def password_up(id):
         if form.password.data == '73946323804236637' and form.email.data == 'fhien45dgioaskpgh@yandex.ru':
             return render_template('delite.html', article=article)
     return render_template('login.html', title='Авторизация', form=form)
+
 
 @app.route('/instruments')
 def index():
@@ -223,6 +220,7 @@ def bayan():
 @app.route('/flute')
 def flute():
     return render_template('instruments/flute.html')
+
 
 @app.route('/clarinet')
 def clarinet():
@@ -448,13 +446,13 @@ def post_detail(id):
     article = db_sess.query(Article).get(id)
     return render_template('post_detail.html', article=article)
 
+
 @app.route('/create-article', methods=['POST', 'GET'])
 def create_article():
     if request.method == 'POST':
         title = request.form['title']
         intro = request.form['intro']
         text = request.form['text']
-        #image_file = request.form['image_file']
         article = Article(title=title, intro=intro, text=text)
         try:
             db_sess = db_session.create_session()
@@ -465,6 +463,7 @@ def create_article():
             return "При добавлении статьи произошла ошибка"
     else:
         return render_template('create-article.html')
+
 
 @app.route('/posts/<int:id>/del')
 def post_delete(id):
