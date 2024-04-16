@@ -498,5 +498,6 @@ def main():
     db_session.global_init("db/blogs.db")
     app.run(debug=True)
 
+
 if __name__ == '__main__':
     main()
