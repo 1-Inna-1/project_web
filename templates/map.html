@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_a2cd2178071b13b9b56a7685c4466aa1 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_a2cd2178071b13b9b56a7685c4466aa1" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_a2cd2178071b13b9b56a7685c4466aa1 = L.map(
+                "map_a2cd2178071b13b9b56a7685c4466aa1",
+                {
+                    center: [20.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 2,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d94c2fbc04ad2268ebf60bc5e326fb26 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_d94c2fbc04ad2268ebf60bc5e326fb26.addTo(map_a2cd2178071b13b9b56a7685c4466aa1);
+        
+    
+            var marker_e13d0c96af5a6eb50e92c18fb01e1f7e = L.marker(
+                [39.2904, -76.6122],
+                {}
+            ).addTo(map_a2cd2178071b13b9b56a7685c4466aa1);
+        
+    
+        var popup_0691ed3265323cefb6a57447b8e95505 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a57f6f6378d9404bf5dc7a37136887ad = $(`<div id="html_a57f6f6378d9404bf5dc7a37136887ad" style="width: 100.0%; height: 100.0%;">Балтимор (США) Жил: Филип Гласс</div>`)[0];
+                popup_0691ed3265323cefb6a57447b8e95505.setContent(html_a57f6f6378d9404bf5dc7a37136887ad);
+            
+        
+
+        marker_e13d0c96af5a6eb50e92c18fb01e1f7e.bindPopup(popup_0691ed3265323cefb6a57447b8e95505)
+        ;
+
+        
+    
+    
+            var marker_4433523c663ad341a12389246a393439 = L.marker(
+                [55.3877, 36.7226],
+                {}
+            ).addTo(map_a2cd2178071b13b9b56a7685c4466aa1);
+        
+    
+        var popup_03adee6205938feca63d2e9cb77bd007 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_65f3a5965d50c5460341991adc2329bc = $(`<div id="html_65f3a5965d50c5460341991adc2329bc" style="width: 100.0%; height: 100.0%;">Наро-Фоминск (Московская область) Жил: Кирилл Рихтер</div>`)[0];
+                popup_03adee6205938feca63d2e9cb77bd007.setContent(html_65f3a5965d50c5460341991adc2329bc);
+            
+        
+
+        marker_4433523c663ad341a12389246a393439.bindPopup(popup_03adee6205938feca63d2e9cb77bd007)
+        ;
+
+        
+    
+    
+            var marker_23faded1519bac9c3637c9f62d70ac9e = L.marker(
+                [50.1109, 8.6821],
+                {}
+            ).addTo(map_a2cd2178071b13b9b56a7685c4466aa1);
+        
+    
+        var popup_6f80f1afb9f44497989bb53cab965d40 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a956365c65aa6bd449850f8657517f14 = $(`<div id="html_a956365c65aa6bd449850f8657517f14" style="width: 100.0%; height: 100.0%;">Франкфурт-на-Майне (Германия) Жил: Ханс Циммер</div>`)[0];
+                popup_6f80f1afb9f44497989bb53cab965d40.setContent(html_a956365c65aa6bd449850f8657517f14);
+            
+        
+
+        marker_23faded1519bac9c3637c9f62d70ac9e.bindPopup(popup_6f80f1afb9f44497989bb53cab965d40)
+        ;
+
+        
+    
+    
+            var marker_c6e7b9589fa23d56f8a9f755007c7f5c = L.marker(
+                [40.7128, -74.006],
+                {}
+            ).addTo(map_a2cd2178071b13b9b56a7685c4466aa1);
+        
+    
+        var popup_c8b0b3d8169fad6a370e67b9b159b430 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6859a380df168b9422b4e925d9f2beb0 = $(`<div id="html_6859a380df168b9422b4e925d9f2beb0" style="width: 100.0%; height: 100.0%;">Нью-Йорк (США) Жил: Джон Уильямс</div>`)[0];
+                popup_c8b0b3d8169fad6a370e67b9b159b430.setContent(html_6859a380df168b9422b4e925d9f2beb0);
+            
+        
+
+        marker_c6e7b9589fa23d56f8a9f755007c7f5c.bindPopup(popup_c8b0b3d8169fad6a370e67b9b159b430)
+        ;
+
+        
+    
+    
+            var marker_ae51988b06c22de1f50724a6beabdf30 = L.marker(
+                [45.4642, 9.19],
+                {}
+            ).addTo(map_a2cd2178071b13b9b56a7685c4466aa1);
+        
+    
+        var popup_1490874ae69c8ae7ec1e511e9f98ccea = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_412ac1473599885948c121cb2409501b = $(`<div id="html_412ac1473599885948c121cb2409501b" style="width: 100.0%; height: 100.0%;">Милан Жил: Роберто Каччапалья</div>`)[0];
+                popup_1490874ae69c8ae7ec1e511e9f98ccea.setContent(html_412ac1473599885948c121cb2409501b);
+            
+        
+
+        marker_ae51988b06c22de1f50724a6beabdf30.bindPopup(popup_1490874ae69c8ae7ec1e511e9f98ccea)
+        ;
+
+        
+    
+</script>
+</html>
