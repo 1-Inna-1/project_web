@@ -4,3 +4,4 @@ flask_login
 numpy
 flask_wtf
 sqlalchemy
+folium
