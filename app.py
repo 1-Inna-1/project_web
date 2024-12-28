@@ -7,7 +7,7 @@ import numpy as np
 import pyaudio as pa
 from data.login import LoginForm
 import folium
-
+# aaaaaaaaaaaa
 # частота дискретизации
 sample_rate = 44100
 # 16-ти битный звук (2 ** 16 -- максимальное значение для int16)
