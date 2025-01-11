@@ -251,7 +251,7 @@ def piano_music():
     return render_template('piano.html')
 
 
-@app.route('/play_tone/<int:index>')
+'''@app.route('/play_tone/<int:index>')
 def play_tone(index):
     duration_tone = 1/64.0
     tones = generate_tones(duration_tone)
@@ -262,7 +262,7 @@ def play_tone(index):
     stream.stop_stream()
     stream.close()
     p.terminate()
-    return ''
+    return '''
 
 
 @login_manager.user_loader
